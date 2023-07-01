@@ -1,0 +1,13 @@
+{
+  "name": "ura-game",
+  "description": "URA Subgraph",
+  "version": "1.0.0",
+  "repository": "git@github.com:b8dex/thegraph.git",
+  "author": "URA",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ zemtsovigor/ura-game subgraph.yaml"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "exchange",
+  "description": "TBCC Finance Subgraph",
+  "version": "1.0.0",
+  "repository": "git@gitlab.com:b8dex/thegraph.git",
+  "author": "TBCC",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "deploy": "graph deploy --product hosted-service --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ zemtsovigor/exchange subgraph.yaml"
+  }
+}

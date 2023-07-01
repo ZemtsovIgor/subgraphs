@@ -1,0 +1,38 @@
+specVersion: 0.0.2
+description: URA Game
+repository: https://gitlab.com/b8dex/thegraph
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GAME
+    network: bsc
+    source:
+      address: "0x423237005A35787fB706Fa5F6f436Fe75534daEe"
+      abi: GAME
+      startBlock: 28006269
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: GAME/GAME.wasm
+      entities:
+        - Contract
+        - Owner
+        - Transaction
+      abis:
+        - name: GAME
+          file: GAME/abis/GAME.json
+      eventHandlers:
+        - event: UserVerification(indexed address)
+          handler: handleVerification
+        - event: InvestmentReceived(uint256)
+          handler: handleInvestment
+        - event: ReferralRewardSent(indexed address,uint256,uint256)
+          handler: handleReferralReward
+        - event: DonationRewardSent(indexed address,uint256,uint256)
+          handler: handleDonationReward
+        - event: DonationReferralRewardSent(indexed address,uint256,uint256)
+          handler: handleDonationReferralReward
+        - event: CharitySent(indexed address,uint256)
+          handler: handleCharitySent

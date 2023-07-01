@@ -1,0 +1,81 @@
+# Schema
+type _Schema_
+  # Customer
+  @fulltext(
+    name: "customerSearch"
+    language: en
+    algorithm: rank
+    include: [{ entity: "Customer", fields: [{ name: "id" }] }]
+  )
+
+"""
+URA GAME (contract)
+"""
+type Contract @entity {
+  "ID (address)"
+  id: ID!
+
+  "Total hits"
+  totalHits: BigInt!
+}
+
+"""
+Customers
+"""
+type Customer @entity {
+  "ID"
+  id: ID!
+
+  "Verified"
+  verified: Boolean!
+
+  "Current Table"
+  currentTable: BigInt!
+
+  "My ID"
+  myID: BigInt!
+
+  "Inviter ID"
+  inviterID: BigInt!
+
+  "Total hits"
+  totalHits: BigInt!
+
+  "Inviter Rewards"
+  inviterRewards: [TableHits!]! @derivedFrom(field: "inviterAddress")
+
+  "Winner Rewards"
+  winnerRewards: [TableHits!]! @derivedFrom(field: "winnerAddress")
+
+  "Winner Inviter Rewards"
+  winnerInviterRewards: [TableHits!]! @derivedFrom(field: "winnerInviterAddress")
+}
+
+"""
+Table Hits
+"""
+type TableHits @entity {
+  "ID"
+  id: ID!
+
+  "Table Num"
+  tableNum: BigInt!
+
+  "Inviter Address"
+  inviterAddress: Customer!
+
+  "Inviter Reward"
+  inviterReward: BigInt!
+
+  "Winner Address"
+  winnerAddress: Customer!
+
+  "Winner Reward"
+  winnerReward: BigInt!
+
+  "Winner Inviter Address"
+  winnerInviterAddress: Customer!
+
+  "Winner Inviter Reward"
+  winnerInviterReward: BigInt!
+}

@@ -1,0 +1,29 @@
+type Token @entity {
+  "ID (address)"
+  id: ID!
+  "Name"
+  name: String!
+  "Symbol"
+  symbol: String!
+  "Decimals"
+  decimals: BigInt!
+  "Total Supply"
+  totalSupply: BigInt!
+}
+
+type Burn @entity {
+  id: ID!
+  timestamp: BigInt!
+
+  sender: Bytes
+  amount: BigDecimal
+  to: Bytes
+  logIndex: BigInt
+}
+
+type Burner @entity {
+  id: ID!
+
+  sender: Bytes
+  amount: BigDecimal
+}

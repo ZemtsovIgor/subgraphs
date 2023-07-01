@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+description: TBCC Finance is a decentralized protocol for getting token information on Binance Smart Chain.
+repository: https://gitlab.com/b8dex/thegraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ERC20
+    network: bsc
+    source:
+      address: '0xf29480344d8e21efeab7fde39f8d8299056a7fea'
+      abi: ERC20
+      startBlock: 8499507
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./mappings/index.ts
+      entities:
+        - Token
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
